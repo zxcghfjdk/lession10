@@ -1,0 +1,20 @@
+@mixin font($weight){
+    font-family: 'Montserrat';
+    font-weight: $weight;
+}
+@mixin button($color) {
+    color: $color;
+    border: 1px solid $color;
+    @include font(900);
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 0.5s;
+
+}
+@mixin activeButton($color){
+    color: $white;
+    background-color: $color;
+    cursor: pointer;
+}

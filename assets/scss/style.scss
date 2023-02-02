@@ -1,0 +1,287 @@
+@import 'default';
+
+$black: #000;
+$white: #fff;
+$mainBlack: #202020;
+$pink: #EF5DA8;
+$orange: #FF3D00;
+$blue: #0085FF;
+$gray: #808080;
+$lightGray: #E3E3E3;
+
+
+@mixin font($size) {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: $size;
+}
+
+
+@mixin button($color) {
+    color: $color;
+    border: 1px solid $color;
+    @include font(900);
+    font-size: 14px;
+    text-transform: capitalize;
+    padding: 10px 0;
+    border-radius: 5px;
+    width: 100%;
+    transition: 0.4s;
+}
+
+@mixin activeButton($color) {
+    @include button($color);
+    color: $white;
+    background-color: $color;
+    cursor: pointer;
+}
+
+@mixin cover($height){
+    padding-top: $height;
+    width: 100%;
+    position: relative;
+    img, .content{
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.btn {
+    &.orange {
+        @include button($orange);
+
+        &:hover {
+            @include activeButton($orange);
+        }
+    }
+
+    &.blue {
+        @include button($blue);
+
+        &:hover {
+            @include activeButton($blue);
+        }
+    }
+}
+
+p {
+    @include font(400);
+}
+
+h1,
+h2,
+h3 {
+    @include font(900);
+}
+
+h4 {
+    @include font(700);
+}
+
+%container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+body {
+    background: #F7F7F7;
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 38px 0;
+
+        .burger-menu {
+            .line {
+                width: 20px;
+                height: 2px;
+                background-color: $black;
+                margin-bottom: 3px;
+
+                &:last-child {
+                    margin: 0;
+                }
+            }
+        }
+        h1 {
+            text-transform: uppercase;
+            transition: 0.5s;
+            font-size: 24px;
+            &.active {
+                color: $pink;
+            }
+            &:hover{
+                color: $orange;
+                cursor: pointer;
+            }
+        }
+        nav{
+            svg{
+                &:first-child{
+                    margin-right: 20px;
+                }
+                &:hover{
+                    scale: 1.2;
+                }
+            }
+        }
+    }
+    .main{
+        @extend %container;
+        align-items: stretch;
+        .block{
+            background-color: $blue;
+            border-radius: 8px;
+            &.cover{
+            @include cover(30%);
+            width: 543/1130*100%;
+            img{
+                border-radius: 8px;
+            }
+            }
+            h2{
+                color: $white;
+                margin: 38px 55px;
+            }
+        
+        }
+    }
+    .cards{
+        @extend %container;
+        .card{
+            width: 17%;
+            background: #FFFFFF;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            .cover{
+                @include cover(100%);
+                img{
+                    border-radius: 8px 8px 0 0;
+                }
+            }
+            .content{
+                padding: 10px;
+                .title{
+                    font-size: 16px;
+                }
+                .desc{
+                    font-size: 12px;
+                    margin: 14px 0 8px;
+                }
+                .time{
+                    font-size: 10px;
+                    color: $gray;
+                    margin-bottom: 8px;
+                }
+            }
+        }
+    }
+    .forms{
+        @extend %container;
+        justify-content: center;
+        margin-bottom: 56px;
+        .form{
+            width: 30%;
+            padding: 15px 20.5px 34px 18.5px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: $white;
+            h1{
+                text-align: center;
+                margin-bottom: 26px;
+            }
+            input[type=text] {
+                @include font(400);
+                border: 1px solid $gray;
+                border-radius: 6px;
+                padding: 7px 11px;
+                font-size: 10px;
+                color: $gray;
+                margin-bottom: 13px;
+            }
+            
+        }
+        
+    }
+    footer{
+        background-color: $mainBlack;
+        padding: 37px 15% 42px;
+        
+        .container{
+            @extend %container;
+            h3{
+                color: $white;
+                font-size: 16px;
+            }
+            p{
+                color: $white;
+                font-size: 12px;
+            }
+        }
+
+        
+    }
+
+}
+section{
+    margin-bottom: 80px;
+}
+
+
+.select{
+    position: relative;
+    width: 94%;
+    padding: 7px 11px;
+    @include font(400);
+    font-size: 10px;
+    color: $gray;
+    @extend %container;
+    border: 1px solid $gray;
+    border-radius: 6px;
+    margin-bottom: 26px;
+    &:hover{
+        .list{
+            display: block;
+        }
+    }
+    .list{
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 1%;
+        width: 40%;
+        padding: 10px;
+        background-color: $white;
+        border: 1px solid $gray;
+        border-radius: 0 0 6px 6px;
+        
+        p{
+            font-size: 12px;
+            color: $black;
+            margin-bottom: 4px;
+            transition: 0.4s;
+            &:hover{
+                color: $orange;
+                border-bottom: 1px solid $orange;
+                cursor: pointer;
+            }
+            &:last-child{
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.wrapper{
+    width: 70%;
+    margin: 0 auto;
+}
